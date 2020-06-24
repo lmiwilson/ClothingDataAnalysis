@@ -1,12 +1,12 @@
 /* Generated Code (IMPORT) */
-/* Source File: clothing_store_mod6.csv */
+/* Source File: clothing_Store_Data.csv */
 /* Source Path: /folders/myfolders/sasuser.v94 */
 /* Code generated on: 10/26/19, 3:30 PM */
 
 %web_drop_table(WORK.IMPORT);
 
 
-FILENAME REFFILE '/folders/myfolders/sasuser.v94/ENTclothing_store_mod8.csv';
+FILENAME REFFILE '/folders/myfolders/sasuser.v94/Clothing_Store_Data.csv';
 
 PROC IMPORT DATAFILE=REFFILE
 	DBMS=CSV
@@ -14,7 +14,7 @@ PROC IMPORT DATAFILE=REFFILE
 	GETNAMES=YES;
 
 Data ClothingSales;
-	infile '/folders/myfolders/sasuser.v94/ENTclothing_store_mod8.csv' dlm=',' firstobs=2;
+	infile '/folders/myfolders/sasuser.v94/Clothing_Store_Data.csv' dlm=',' firstobs=2;
 	input CID Zip FRE MON CC AVRG PSWEAT PKNITop PKNITDress PBBLouse PBJ PCAR PCAS PShirt Pdress PSuit POW PJ PF PL PC GMP PROMOS DAYS MDown CLUST Percent IDays Ilife; 
 run;
 	
@@ -35,7 +35,6 @@ RUN;
 /* relationship between # of marketing promotions (PROMOS) and average amt spent (AVRG), total number of visit (FRE) Total Net Sales (MON) Length as customer (DAYS)
 Gross margin percentage (GMP) */
 
-/*PROC CORR Data=ClothingSales PLOTS(MAXPOINTS=NONE)=MATRIX; */
 PROC CORR Data=ClothingSales SPEARMAN;
 	VAR PROMOS;
 	WITH AVRG FRE MON DAYS GMP ;
